@@ -20,13 +20,14 @@ class Player:
         self.turn_count = turn_count
         self.number_of_cards = number_of_cards
         self.history = [] #creates an empty list that adds the played cards to players history
+        self.score = 0
 
     def play(self):
         card_number = random.choice(self.card) #plays a random card from the players hand
         self.card.remove(card_number) #remove the card from the players hand
         self.history.append(card_number) #adds the card to the players history
         self.turn_count += 1 #ups the players turn count by 1
-        return f"{self.player_name} on turn {self.turn_count} played: {card_number.value} {card_number.icon}"
+        return f"Turn {self.turn_count}: {self.player_name} played {card_number.value} {card_number.icon}"
 
 
 class Deck:
