@@ -33,10 +33,9 @@ class Deck:
     """create Deck class"""
     def __init__(self):
         """define the variables in :colors , :icons , :values"""
-        colors = ["Red", "Black"]
-        icons = ['♥', '♦', '♣', '♠']
+        icons = {"♥": "Red", "♦": "Red", "♣": "Black", "♠": "Black"}
         values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-        self.card = [Card(color, icon, value) for color in colors for icon in icons for value in values]
+        self.card = [Card(color, suit, value) for suit, color in icons.items() for value in values]
 
     def shuffle(self):
         """shuffles the deck"""
