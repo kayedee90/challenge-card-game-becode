@@ -33,10 +33,10 @@ class Deck:
     """create Deck class"""
     def __init__(self):
         """define the variables in :colors , :icons , :values"""
-        colors = ["Red", "Black"]
-        icons = ['♥', '♦', '♣', '♠']
-        values = ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]
-        self.card = [Card(color, icon, value) for color in colors for icon in icons for value in values]
+        icons = {"♥": "Red", "♦": "Red", "♣": "Black", "♠": "Black"}
+        values = {"A": 14, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7 , "8": 8, "9": 9 , "10": 10, "J": 11, "Q": 12, "K": 13}
+        self.card = [Card(color, suit, value) for suit, color in icons.items() for value in values]
+
 
     def shuffle(self):
         """shuffles the deck"""
@@ -47,3 +47,4 @@ class Deck:
         distribute_cards = self.card[:num_cards] #take the cards cards from the beginning of the deck
         self.card = self.card[num_cards:] #remove the distributed cards from the deck
         return distribute_cards
+

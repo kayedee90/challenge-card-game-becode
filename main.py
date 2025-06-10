@@ -16,7 +16,7 @@ class Board:
         num_players = len(player_names) # count the number of players
         num_cards_per_player = len(self.deck.card) // num_players #divides the deck by the number of players
         self.players = [Player(name, self.deck.distribute(num_cards_per_player)) for name in player_names]
-        self.turn_count = 0 #set starting turn count to0
+        self.turn_count = 0 #set starting turn count to 0
         self.active_cards = [] #creates the empty list where active cards are stored
         self.history_cards = [] #created the empty list where played cards are added to history
 
