@@ -11,7 +11,7 @@ This is a Python-based card game project designed as a **coding challenge for Be
 ✅ Generate a full deck of **52 playing cards**  
 ✅ Distribute the deck evenly among players  
 ✅ Players **play one card per turn** until they have none left  
-✅ **point-based scoring** to determine a winner  
+✅ **Point-based scoring** to determine a winner  
 
 ### **Future improvements**
 🚀 Make the game **interactive**, allowing players to pick which card to play  
