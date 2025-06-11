@@ -20,21 +20,25 @@ class Player:
         self.turn_count = turn_count
         self.number_of_cards = number_of_cards
         self.history = [] #creates an empty list that adds the played cards to players history
-        self.score = 0
+        self.score = 0 #set starting score per player to 0
+
 
     def play(self):
-        card_number = random.choice(self.card) #plays a random card from the players hand
-        self.card.remove(card_number) #remove the card from the players hand
-        self.history.append(card_number) #adds the card to the players history
-        self.turn_count += 1 #ups the players turn count by 1
-        return f"Turn {self.turn_count}: {self.player_name} played {card_number.value} {card_number.icon}"
+        card_number = random.choice(self.card) #plays random cards
+        self.card.remove(card_number) #removes the played card
+        self.history.append(card_number) #adds played card to history
+        self.turn_count += 1 #adds to turn counter
+        message = f"Turn {self.turn_count}: {self.player_name} played {card_number.value} {card_number.icon}"
+        return card_number, message
+
 
 
 class Deck:
     """create Deck class"""
     def __init__(self):
         """define the variables in :colors , :icons , :values"""
-        icons = {"♥": "Red", "♦": "Red", "♣": "Black", "♠": "Black"}
+        icons = {"♥": "Red", "♦": "Red", "♣": "Black", "♠": "Black"} #links the suits to the colors
+        #adds the values and defines them for scoring
         values = {"A": 14, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7 , "8": 8, "9": 9 , "10": 10, "J": 11, "Q": 12, "K": 13}
         self.card = [Card(color, suit, value) for suit, color in icons.items() for value in values]
 

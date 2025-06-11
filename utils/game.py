@@ -17,22 +17,26 @@ class Board:
         self.history_cards = [] #created the empty list where played cards are added to history
 
     def start_game(self):
-        """function that starts the game"""
-        while any(player.card for player in self.players): #while function loops as long as players have cards
-            self.turn_count += 1 #sets the turn counter to count
-            self.active_cards = [player.play() for player in self.players] #each player plays their active cards
-            winning_card = max(self.active_cards, key=lambda card: card.value) #finds the highest card
-            for player, card in zip(self.players, self.active_cards):  # Match each player with their played card
+        while any(player.card for player in self.players):  #while players have cards:
+            self.turn_count += 1 #add to turn count
+
+            
+            played = [player.play() for player in self.players] #each player plays a card
+            self.active_cards = [card for card, _ in played]
+            messages = [msg for _, msg in played] #displays the card played
+
+            winning_card = max(self.active_cards, key=lambda card: card.value) #determines the winning card
+
+            for player, card in zip(self.players, self.active_cards):
                 if card == winning_card:
-                    player.score += 1  # Add point to player who played the highest card #adds 1 point to the player if they had the winning card
-            self.history_cards.extend(self.active_cards) #adds the played cards to each players history
-            print(f"Turn {self.turn_count}:") #prints what turn it is at the start of each turn
-            for card in self.active_cards: #loops through active/played cards and displays them
-                print(card)
+                    player.score += 1 #adds a point to the player with the winning card
+            self.history_cards.extend(self.active_cards) #adds played cards to history
 
-            print(f"Turn {self.turn_count}: Winner - {winning_card.value} {winning_card.icon}")
-            for card in self.active_cards:  
-                print(card) #prints the winning player and winning card this round
+            """prints turn messages"""
+            print(f"Turn {self.turn_count}:") #turn message
+            for msg in messages:
+                print(msg)
+            print(f"Winner of this turn: {winning_card.value} {winning_card.icon}\n") #winner of turn message
 
-        winner = max(self.players, key=lambda player: player.score)  #finds which player won the most rounds
-        print(f"\n**Game Over! The winner is {winner.player_name} with {winner.score} points.**")  #prints winning message
+        winner = max(self.players, key=lambda player: player.score)
+        print(f"Game Over! The winner is {winner.player_name} with {winner.score} points.**") #game ending message with final winner
