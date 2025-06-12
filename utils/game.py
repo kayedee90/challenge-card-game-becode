@@ -36,7 +36,8 @@ class Board:
             print(f"Turn {self.turn_count}:") #turn message
             for msg in messages:
                 print(msg)
-            print(f"Winner of this turn: {winning_card.value} {winning_card.icon}\n") #winner of turn message
+            winning_player = next(player for player, card in zip(self.players, self.active_cards) if card == winning_card) #defines the winning player of that turn
+            print(f"Winner of this turn: {winning_player.player_name} with {winning_card.value} {winning_card.icon}\n") #winner of turn message
 
         winner = max(self.players, key=lambda player: player.score)
         print(f"Game Over! The winner is {winner.player_name} with {winner.score} points.**") #game ending message with final winner

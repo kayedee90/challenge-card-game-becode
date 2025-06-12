@@ -25,7 +25,7 @@ class Player:
 
     def play(self):
         card_number = random.choice(self.card) #plays random cards
-        self.card.remove(card_number) #removes the played card
+        self.card.remove(card_number) #removes the played card from the players hand
         self.history.append(card_number) #adds played card to history
         self.turn_count += 1 #adds to turn counter
         message = f"Turn {self.turn_count}: {self.player_name} played {card_number.value} {card_number.icon}"
